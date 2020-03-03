@@ -1,10 +1,14 @@
 package essais;
 
+import entites.AdressePostale;
+
 public class TestAdressePostale {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		//declaration des variables
+		AdressePostale a = new AdressePostale();
+		AdressePostale b = new AdressePostale();
 	}
 
 }
