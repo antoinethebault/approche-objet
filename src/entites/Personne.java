@@ -11,4 +11,9 @@ public class Personne {
 		this.nom=nom;
 		this.prenom=prenom;
 	}
+	
+	//affichage du nom en majuscules et du prenom
+	public String afficheNomPrenom () {
+		return this.nom.toUpperCase()+" "+this.prenom;
+	}
 }
