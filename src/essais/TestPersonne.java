@@ -14,7 +14,7 @@ public class TestPersonne {
 
 		//affectation des attributs
 		personneA.adresse=adresseA;
-		personneB.adresse=adresseB;
+		personneB.setAdresse(adresseB);
 	}
 
 }
