@@ -17,5 +17,12 @@ public class Compte {
 		this.numero = numero;
 		this.solde = solde;
 	}
+	
+	/**
+	 *redefinition de la methode toString afin d'afficher le numero de compte et le solde
+	 */
+	public String toString () {
+		return "Numero de compte : "+numero+" Solde : "+solde;
+	}
 
 }
