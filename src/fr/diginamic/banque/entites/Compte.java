@@ -6,12 +6,16 @@ package fr.diginamic.banque.entites;
  * et un constructeur permettant de creer une instance
  */
 public class Compte {
+	/**
+	 * numero 	numero de compte
+	 * solde 	solde du compte
+	 */
 	private String numero;
 	private double solde;
 	
 	/**
-	 * @param numeroCompte
-	 * @param soldeCompte
+	 * @param numeroCompte	numero du compte
+	 * @param soldeCompte	solde du compte
 	 */
 	public Compte(String numero, double solde) {
 		this.numero = numero;
@@ -21,6 +25,7 @@ public class Compte {
 	/**
 	 *redefinition de la methode toString afin d'afficher le numero de compte et le solde
 	 */
+	@Override
 	public String toString () {
 		return "Numero de compte : "+numero+" Solde : "+solde;
 	}
