@@ -25,7 +25,7 @@ public class TestBanque {
 		/** soldeGlobal creation de variable de solde global*/
 		int soldeGlobal=0;
 		
-		//affichage des instances	 
+		//affichage des instances et du solde global	 
 		for (int i=0; i<comptes.length;i++) {
 			System.out.println(comptes[i]);
 			soldeGlobal+=comptes[i].getSolde();
