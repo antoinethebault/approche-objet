@@ -2,6 +2,8 @@ package fr.diginamic.banque;
 
 import fr.diginamic.banque.entites.Compte;
 import fr.diginamic.banque.entites.CompteTaux;
+import fr.diginamic.banque.entites.Credit;
+import fr.diginamic.banque.entites.Debit;
 
 /**
  * @author antoinethebault
@@ -25,13 +27,22 @@ public class TestBanque {
 		/** soldeGlobal creation de variable de solde global*/
 		int soldeGlobal=0;
 		
-		//affichage des instances et du solde global	 
+		/**ajout d'operations*/
+		compte.ajouterOperation(new Debit("01/01/20",100));
+		compte.ajouterOperation(new Credit("02/01/20",50));
+		compte.ajouterOperation(new Credit("03/01/20",25));
+		
+		/**affichage des instances et du solde global	*/ 
 		for (int i=0; i<comptes.length;i++) {
 			System.out.println(comptes[i]);
 			soldeGlobal+=comptes[i].getSolde();
 			if (i==comptes.length-1)
 				System.out.println("Solde Global : "+soldeGlobal);
 		}
+		
+		/**affichage du solde des credits et des debits effectues sur compte*/
+		System.out.println("Solde des credits sur compte : "+compte.getSolde("CREDIT"));
+		System.out.println("Solde des debits sur compte : "+compte.getSolde("DEBIT"));
 
 	}
 

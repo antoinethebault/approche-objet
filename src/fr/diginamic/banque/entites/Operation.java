@@ -4,7 +4,7 @@ package fr.diginamic.banque.entites;
  * @author antoinethebault
  * classe abstraite gerant les debits et les credits pour un montant a une date definie
  */
-public abstract class Operations {
+public abstract class Operation {
 	/**date : String 	date de l'operation*/
 	private String date;
 	/**montant : double montant de l'operation*/
@@ -14,7 +14,7 @@ public abstract class Operations {
 	 * @param date
 	 * @param montant
 	 */
-	public Operations(String date, double montant) {
+	public Operation(String date, double montant) {
 		super();
 		this.date = date;
 		this.montant = montant;

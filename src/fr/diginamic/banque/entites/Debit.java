@@ -4,7 +4,7 @@ package fr.diginamic.banque.entites;
  * @author antoinethebault
  *classe debit heritant de operations et de ses attributs de date et montant
  */
-public class Debit extends Operations {
+public class Debit extends Operation {
 
 	/**Constructor
 	 * @param date

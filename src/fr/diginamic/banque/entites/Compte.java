@@ -1,5 +1,9 @@
 package fr.diginamic.banque.entites;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 /**
  * @author antoinethebault
  * classe de compte avec un numero de compte et un solde en attributs
@@ -9,9 +13,11 @@ public class Compte {
 	/**
 	 * numero 	numero de compte
 	 * solde 	solde du compte
+	 * operations operations effectuees sur le compte
 	 */
 	private String numero;
-	private double solde;
+	private double soldeInitial;
+	 List<Operation> operations = new ArrayList<Operation>();
 	
 	/**
 	 * @param numeroCompte	numero du compte
@@ -27,13 +33,46 @@ public class Compte {
 	 */
 	@Override
 	public String toString () {
-		return "Numero de compte : "+numero+" Solde : "+getSolde();
+		return "Numero de compte : "+numero+" Solde : "+getSolde()+" Nombre d'operations : "+ operations.size();
 	}
 
 	/** Getter
-	 * @return solde : retourne le solde
+	 * @return solde : retourne le solde en fonction du solde initial et des operations
 	 */
 	public double getSolde() {
+		ListIterator<Operation> it = operations.listIterator();
+		double solde=soldeInitial;
+	    while(it.hasNext()){
+	    	Operation ope=it.next();
+	    	if (ope.afficherType()=="Debit")
+	    		solde-=ope.getMontant();
+	    	else if (ope.afficherType()=="Credit")
+	    		solde+=ope.getMontant();
+	    }
+		return solde;
+	}
+	
+	/**
+	 * @param type : le type des operations
+	 * @return solde : le solde des operations de type type
+	 */
+	public double getSolde(String type) {
+		double solde=0;
+		ListIterator<Operation> it = operations.listIterator();
+		if (type=="CREDIT") {
+			while(it.hasNext()){
+				Operation ope=it.next();
+				if (ope.afficherType()=="Credit")
+		    		solde+=ope.getMontant();
+			}
+		}
+		else if (type=="DEBIT") {
+			while(it.hasNext()){
+				Operation ope=it.next();
+				if (ope.afficherType()=="Debit")
+		    		solde+=ope.getMontant();
+			}
+		}
 		return solde;
 	}
 
@@ -41,7 +80,14 @@ public class Compte {
 	 * @param solde : affecte le solde
 	 */
 	public void setSolde(double solde) {
-		this.solde = solde;
+		this.soldeInitial = solde;
+	}
+
+	/** ajoute une operation a la liste des operations
+	 * @param ope
+	 */
+	public void ajouterOperation(Operation ope) {
+		operations.add(ope);
 	}
 
 }

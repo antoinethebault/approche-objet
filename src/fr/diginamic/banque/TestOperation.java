@@ -2,7 +2,7 @@ package fr.diginamic.banque;
 
 import fr.diginamic.banque.entites.Credit;
 import fr.diginamic.banque.entites.Debit;
-import fr.diginamic.banque.entites.Operations;
+import fr.diginamic.banque.entites.Operation;
 
 /**
  * @author antoinethebault
@@ -16,7 +16,7 @@ public class TestOperation {
 	public static void main(String[] args) {
 		/**operations declaration et affectation de la variable contenant 4 operations de
 		 * debits et credits*/
-		Operations[] operations = new Operations[4];
+		Operation[] operations = new Operation[4];
 		operations[0]=new Debit("01/01/20", 10);
 		operations[1]=new Debit("02/01/20", 15);
 		operations[2]=new Credit("03/01/20", 20);
