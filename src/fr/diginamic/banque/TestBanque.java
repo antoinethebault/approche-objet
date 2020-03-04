@@ -14,7 +14,7 @@ public class TestBanque {
 	 */
 	public static void main(String[] args) {
 		//creation de l'instance
-		Compte compte = new Compte(1234567,10000);
+		Compte compte = new Compte("FR1234567",10000);
 		
 		//affichage de l'instance	 
 		System.out.println(compte);
