@@ -1,4 +1,6 @@
-package fr.diginamic.banque.entites;
+package fr.diginamic.banque;
+
+import fr.diginamic.banque.entites.Compte;
 
 /**
  * @author antoinethebault
