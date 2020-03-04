@@ -19,7 +19,7 @@ public class Compte {
 	 */
 	public Compte(String numero, double solde) {
 		this.numero = numero;
-		this.solde = solde;
+		this.setSolde(solde);
 	}
 	
 	/**
@@ -27,7 +27,15 @@ public class Compte {
 	 */
 	@Override
 	public String toString () {
-		return "Numero de compte : "+numero+" Solde : "+solde;
+		return "Numero de compte : "+numero+" Solde : "+getSolde();
+	}
+
+	public double getSolde() {
+		return solde;
+	}
+
+	public void setSolde(double solde) {
+		this.solde = solde;
 	}
 
 }
