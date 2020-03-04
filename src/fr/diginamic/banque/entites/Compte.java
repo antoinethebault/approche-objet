@@ -13,9 +13,9 @@ public class Compte {
 	 * @param numeroCompte
 	 * @param soldeCompte
 	 */
-	public Compte(int numeroCompte, int soldeCompte) {
-		this.numero = numeroCompte;
-		this.solde = soldeCompte;
+	public Compte(int numero, int solde) {
+		this.numero = numero;
+		this.solde = solde;
 	}
 
 }
