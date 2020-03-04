@@ -14,7 +14,9 @@ public class TestBanque {
 	 * executable de test de la classe banque
 	 */
 	public static void main(String[] args) {
-		//creation des instances
+		/**
+		 * compte, comptePEL, compte[]
+		 * creation des instances de compte et d'un tableau contenant les instances*/
 		Compte compte = new Compte("FR1234567",10000);
 		CompteTaux comptePEL = new CompteTaux("FR7654321", 1000, 1.2);
 		Compte[] comptes = new Compte[2];

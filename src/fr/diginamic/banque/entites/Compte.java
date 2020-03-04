@@ -30,10 +30,16 @@ public class Compte {
 		return "Numero de compte : "+numero+" Solde : "+getSolde();
 	}
 
+	/** Getter
+	 * @return solde : retourne le solde
+	 */
 	public double getSolde() {
 		return solde;
 	}
 
+	/** Setter
+	 * @param solde : affecte le solde
+	 */
 	public void setSolde(double solde) {
 		this.solde = solde;
 	}
