@@ -6,16 +6,16 @@ package fr.diginamic.banque.entites;
  * et un constructeur permettant de creer une instance
  */
 public class Compte {
-	private int numeroCompte;
-	private int soldeCompte;
+	private int numero;
+	private int solde;
 	
 	/**
 	 * @param numeroCompte
 	 * @param soldeCompte
 	 */
 	public Compte(int numeroCompte, int soldeCompte) {
-		this.numeroCompte = numeroCompte;
-		this.soldeCompte = soldeCompte;
+		this.numero = numeroCompte;
+		this.solde = soldeCompte;
 	}
 
 }
