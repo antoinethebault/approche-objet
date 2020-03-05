@@ -1,4 +1,4 @@
-package formesGeometriques;
+package entites;
 
 import formesGeometriques.ObjetGeometrique;
 

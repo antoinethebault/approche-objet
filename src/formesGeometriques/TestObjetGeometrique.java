@@ -1,5 +1,7 @@
 package formesGeometriques;
 
+import entites.Cercle;
+
 /**
  * @author antoinethebault
  *
