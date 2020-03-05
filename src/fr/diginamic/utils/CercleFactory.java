@@ -7,7 +7,7 @@ import entites.Cercle;
  * 
  */
 public class CercleFactory {
-	public static Cercle cercleFactory (double rayon) {
+	public static Cercle cercle (double rayon) {
 		return new Cercle(rayon);
 	}
 }

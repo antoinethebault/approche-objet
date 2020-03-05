@@ -14,8 +14,8 @@ public class TestCercle {
 	 */
 	public static void main(String[] args) {
 		/**creation des instances*/
-		Cercle cercle1 = CercleFactory.cercleFactory(5);
-		Cercle cercle2 = CercleFactory.cercleFactory(10);
+		Cercle cercle1 = CercleFactory.cercle(5);
+		Cercle cercle2 = CercleFactory.cercle(10);
 		
 		/**Affichage des resultats*/
 		System.out.println("Perimetre du cercle1 : "+cercle1.perimetre());
