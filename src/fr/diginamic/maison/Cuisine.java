@@ -14,4 +14,9 @@ public class Cuisine extends Piece {
 		super(superficie, etage);
 	}
 
+	@Override
+	public String getType() {
+		return "Cuisine";
+	}
+
 }

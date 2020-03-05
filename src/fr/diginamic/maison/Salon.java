@@ -14,4 +14,9 @@ public class Salon extends Piece {
 		super(superficie, etage);
 	}
 
+	@Override
+	public String getType() {
+		return "Salon";
+	}
+
 }

@@ -10,4 +10,9 @@ public class WC extends Piece {
 		super(superficie, etage);
 	}
 
+	@Override
+	public String getType() {
+		return "WC";
+	}
+
 }
