@@ -15,6 +15,8 @@ public class TestCercle {
 		/**creation des instances*/
 		Cercle cercle1 = new Cercle(5);
 		Cercle cercle2 = new Cercle(10);
+		
+		/**Affichage des resultats*/
 		System.out.println("Perimetre du cercle1 : "+cercle1.perimetre());
 		System.out.println("Surface du cercle1 : "+cercle1.surface());
 		System.out.println("Perimetre du cercle2 : "+cercle2.perimetre());
