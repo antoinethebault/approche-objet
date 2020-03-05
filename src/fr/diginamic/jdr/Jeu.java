@@ -56,7 +56,7 @@ public class Jeu {
 						System.out.println("Votre personnage est décédé. Il a obtenu le score de "+perso.getScore()+" points. Veuillez créer un nouveau personnage");
 					else if (creature.getPointsDeVie()<=0) {
 						perso.scoreAjout(creature.getGain());
-						System.out.println("Votre personnage a gagne. Il a gagne "+creature.getGain()+" points, a le score de "+perso.getScore()+" et a "+perso.getPointsDeVie()+"points de vie.");
+						System.out.println("Votre personnage a gagne. Il a gagne "+creature.getGain()+" points, a le score de "+perso.getScore()+" et a "+perso.getPointsDeVie()+" points de vie.");
 					}	
 				}
 			}
