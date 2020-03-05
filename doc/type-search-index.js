@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"fr.diginamic.jdr","l":"Creature"},{"p":"fr.diginamic.jdr","l":"Gobelin"},{"p":"fr.diginamic.jdr","l":"Jeu"},{"p":"fr.diginamic.jdr","l":"Loup"},{"p":"fr.diginamic.jdr","l":"Personnage"},{"p":"fr.diginamic.jdr","l":"Troll"}]
