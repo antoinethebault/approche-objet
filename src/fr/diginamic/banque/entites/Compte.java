@@ -33,7 +33,7 @@ public class Compte {
 	 */
 	@Override
 	public String toString () {
-		return "Numero de compte : "+numero+" Solde : "+getSolde()+" Nombre d'operations : "+ operations.size();
+		return "Numero de compte : "+numero+" - Solde : "+getSolde()+" - Nombre d'operations : "+ operations.size();
 	}
 
 	/** Getter
@@ -83,11 +83,36 @@ public class Compte {
 		this.soldeInitial = solde;
 	}
 
+	
+	
+	/**Getter
+	 * @return the numero
+	 */
+	public String getNumero() {
+		return numero;
+	}
+
+	/**Setter
+	 * @param numero the numero to set
+	 */
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 	/** ajoute une operation a la liste des operations
 	 * @param ope
 	 */
 	public void ajouterOperation(Operation ope) {
 		operations.add(ope);
 	}
+	
+	/**
+	 * getNbOperations 
+	 * @return le nombre d'operations en cours
+	 */
+	public int getNbOperations() {
+		return operations.size();
+	}
+	
 
 }
