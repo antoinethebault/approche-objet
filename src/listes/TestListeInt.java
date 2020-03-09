@@ -7,6 +7,8 @@ import java.util.List;
  * @author antoinethebault
  * classe executable
  *TestListeInt : on cree une liste avec les elements suivants : -1,5,7,3,-2,4,8,5
+ *et on affiche la taille, le plus grand element, la liste sans le plus petit et 
+ *on rend la liste positive
  */
 public class TestListeInt {
 
@@ -30,7 +32,7 @@ public class TestListeInt {
 	}
 
 	/**
-	 * makePositiv : rends tous les nombres negatifs positifs
+	 * makePositiv : rend tous les nombres negatifs positifs
 	 * @param liste
 	 */
 	private static void makePositive(List<Integer> liste) {
