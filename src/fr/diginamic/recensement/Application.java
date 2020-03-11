@@ -32,6 +32,8 @@ public class Application {
 		dixRegionsPlusPeuples(villes);
 		dixDepartmtsPlusPeuples(villes);
 		dixPlusGrandesVilles(villes);
+		
+		
 	}
 
 	/**
