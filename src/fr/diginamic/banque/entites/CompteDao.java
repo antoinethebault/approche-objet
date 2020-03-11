@@ -1,5 +1,7 @@
 package fr.diginamic.banque.entites;
 
+import java.util.List;
+
 /**
  * Liste les méthodes obligatoires pour la persistence des comptes * @author
  * DIGINAMIC
@@ -9,7 +11,7 @@ public interface CompteDao {
 	 * Retourne la liste de tous les comptes 
 	 * @return
 	 */
-	Compte[] lister();
+	List<Compte> lister();
 
 	/**
 	 * Permet de sauvegarder un nouveau compte

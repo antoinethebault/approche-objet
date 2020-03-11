@@ -1,5 +1,7 @@
 package fr.diginamic.banque;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.diginamic.banque.entites.CompteDaoMem;
@@ -70,10 +72,12 @@ public class TestCompteDao {
 	 * listerComptes liste les comptes presents dans compteDaoMem
 	 */
 	public static void listerComptes() {
-		Compte[] comptes=compteDaoMem.lister();
+		List<Compte> comptes=compteDaoMem.lister();
 		if (comptes!=null) {
-			for (int i=0;i<comptes.length;i++)
-				System.out.println(comptes[i].toString());
+			Iterator<Compte> iterator = comptes.iterator();
+			while (iterator.hasNext()) {
+				System.out.println(iterator.next());
+			}
 		}
 		else {
 			System.out.println("Il n'y a pas de comptes");

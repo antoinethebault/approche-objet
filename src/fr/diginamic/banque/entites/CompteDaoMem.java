@@ -1,20 +1,24 @@
 package fr.diginamic.banque.entites;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * @author antoinethebault
  *
  */
 public class CompteDaoMem implements CompteDao{
-	Compte[] comptes;
+	List<Compte> comptes;
 
 	@Override
-	public Compte[] lister() {
+	public List<Compte> lister() {
 		return comptes;
 	}
 
 	@Override
 	public void sauvegarder(Compte nvCompte) {
-		Compte[] tmp;
+		/*Compte[] tmp;
 		if (comptes==null) {
 			tmp = new Compte[1];
 			tmp[0]=nvCompte;
@@ -25,39 +29,33 @@ public class CompteDaoMem implements CompteDao{
 				tmp[i]=comptes[i];
 			tmp[comptes.length]=nvCompte;
 		}
-		comptes=tmp;
-		System.out.println("Creation d'un nouveau compte : "+comptes[comptes.length-1]);
+		comptes=tmp;*/
+		if (comptes==null)
+			comptes=new ArrayList<>();
+		comptes.add(nvCompte);
+		System.out.println("Creation d'un nouveau compte : "+nvCompte);
 	}
 
 	@Override
 	public boolean supprimer(String numero) {
-		Compte[] tmp = new Compte[comptes.length-1];
 		boolean supprimer=false;
 		if (!existe(numero))
 			return false;
-		else if (comptes.length==1 && comptes[0].getNumero().equals(numero))
-			tmp=null;
 		else {
-			System.out.println("Suppression du compte");
-			for (int i=0;i<comptes.length-1;i++) {
-				if (supprimer==false && !comptes[i].getNumero().equals(numero))
-					tmp[i]=comptes[i];
-				else if (supprimer==false && comptes[i].getNumero().equals(numero)) {
-					supprimer=true;
-					tmp[i]=comptes[i+1];
-				}
-				else if (supprimer==true)
-					tmp[i]=comptes[i+1];
+			Iterator<Compte> iterator = comptes.iterator();
+			while (iterator.hasNext()) {
+				if (iterator.next().getNumero().equals(numero))
+					iterator.remove();
 			}
 		}
-		comptes=tmp;
 		return supprimer;
 	}
 
 	@Override
 	public boolean existe(String numero) {
-		for (int i=0;i<comptes.length;i++) {
-			if (comptes[i].getNumero().equals(numero))
+		Iterator<Compte> iterator = comptes.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getNumero().equals(numero))
 				return true;
 		}
 		return false;
@@ -65,9 +63,12 @@ public class CompteDaoMem implements CompteDao{
 
 	@Override
 	public Compte getCompte(String numero) {
-		for (int i=0;i<comptes.length;i++) {
-			if (comptes[i].getNumero().equals(numero))
-				return comptes[i];
+		Iterator<Compte> iterator = comptes.iterator();
+		Compte compte;
+		while (iterator.hasNext()) {
+			compte=iterator.next();
+			if(compte.getNumero().equals(numero))
+				return compte;
 		}
 		return null;
 	}
