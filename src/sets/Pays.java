@@ -1,10 +1,12 @@
 package sets;
 
+import java.util.Comparator;
+
 /**
  * @author antoinethebault
  *Pays : classe contenant un nom, un nb d'habitants et un PIB/habitant
  */
-public class Pays {
+public class Pays implements Comparable<Pays>{
 	String nom;
 	int nbHabitants;
 	double pibParHabitant;
@@ -58,6 +60,16 @@ public class Pays {
 	
 	public String toString() {
 		return this.nom+" - PIB : "+this.pibParHabitant+"USD - Population : "+this.nbHabitants;
+	}
+	@Override
+	public int compareTo(Pays o) {
+		//return this.getNom().compareTo(o.getNom());
+		if (this.getPibParHabitant()-o.getPibParHabitant()>0)
+			return 1;
+		else if (this.getPibParHabitant()-o.getPibParHabitant()<0)
+			return -1;
+		else
+			return 0;
 	}
 	
 }
