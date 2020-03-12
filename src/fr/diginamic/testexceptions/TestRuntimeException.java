@@ -6,17 +6,9 @@ package fr.diginamic.testexceptions;
  */
 public class TestRuntimeException {
 
-	public static void main(String[] args) {
-		try {
-			System.out.println(Operation.diviser(6, 3));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());;
-		}
-		try {
-			System.out.println(Operation.diviser(6, 0));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());;
-		}
+	public static void main(String[] args){
+			System.out.println(Operation.diviserRuntime(6, 3));
+			System.out.println(Operation.diviserRuntime(6, 0));
 
 	}
 
