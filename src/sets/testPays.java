@@ -1,6 +1,5 @@
 package sets;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -26,6 +25,8 @@ public class testPays {
 		System.out.println("PIB total max : "+pibTotalMax(set));
 		pibHabitantMinMaj(set);
 		System.out.println(set);
+		System.out.println("test egalite :"+new Pays("USA", 	372_200_000, 	59_531.66).equals(new Pays("USA", 	372_200_000, 	59_531.66)));
+		System.out.println("test egalite :"+new Pays("USA", 	372_200_000, 	59_531.66).equals(new Pays("US", 	372_200_000, 	59_531.66)));
 	}
 
 	/**
@@ -89,5 +90,7 @@ public class testPays {
 		paysMin.setNom(paysMin.getNom().toUpperCase());
 		set.add(paysMin);
 	}
+	
+	
 
 }

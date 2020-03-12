@@ -1,6 +1,6 @@
 package sets;
 
-import java.util.Comparator;
+import org.apache.commons.lang3.builder.EqualsBuilder;	
 
 /**
  * @author antoinethebault
@@ -70,6 +70,17 @@ public class Pays implements Comparable<Pays>{
 			return -1;
 		else
 			return 0;
+	}
+	
+	@Override
+	public boolean equals(Object objet) {
+		if (!(objet instanceof Pays))
+			return false;
+		
+		Pays other = (Pays) objet;
+		
+		return new EqualsBuilder().append(nom, other.getNom()).isEquals();
+					
 	}
 	
 }
