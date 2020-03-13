@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import org.apache.commons.io.FileUtils;
@@ -32,8 +33,65 @@ public class Application {
 		dixRegionsPlusPeuples(villes);
 		dixDepartmtsPlusPeuples(villes);
 		dixPlusGrandesVilles(villes);
-		
-		
+		try {
+			menu(villes);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * menu : affiche le menu
+	 * @throws Exception 
+	 */
+	public static void menu(ArrayList<Ville> villes) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		String nom;
+		int saisie = 0;
+		while (saisie != 4) {
+			System.out.println("1.Obtenir la popuplation d'une ville");
+			System.out.println("2.Obtenir la population d'un departement");
+			System.out.println("3.Obtenir la population d'une region");
+			System.out.println("4.Sortir");
+			try {
+				saisie = sc.nextInt();
+			}catch(Exception e) {
+				throw new Exception("La saisie doit etre un entier: "+e.getMessage());
+			}
+			if (saisie<1 || saisie>4)
+				throw new Exception("La saisie doit etre entre 1 et 4");
+			
+			switch (saisie) {
+			case 1:
+				System.out.println("Tapez le nom d'une ville dont vous voulez la population :");
+				nom = sc.next();
+				Ville ville = getVille(nom, villes);
+				if (ville==null)
+					System.out.println("Ville non trouvee");
+				else
+					System.out.println("La population de "+nom+" est de "+ville.getPopulationTotale());
+				break;
+			case 2:
+				System.out.println("Tapez le code d'un departement dont vous voulez la population :");
+				String code = sc.next();
+				if (!villesContainsDepartmt(code, villes))
+					System.out.println("Le departement n'est pas trouve");
+				else
+					System.out.println("Le departement "+code+" a une population de "+getPopulationDepartement(code, villes));
+				break;
+			case 3:
+				System.out.println("Ecrivez la region dont vous voulez la population :");
+				nom = sc.next();
+				if (!villesContainsRegion(nom,villes))
+					System.out.println("La region n'est pas trouvee");
+				else
+					System.out.println("Population de "+nom+" : " + getPopulationRegion(nom, villes));
+				break;
+			}
+		}
+		sc.close();
 	}
 
 	/**
@@ -266,36 +324,38 @@ public class Application {
 	 * @param villes
 	 */
 	public static void dixRegionsPlusPeuples(ArrayList<Ville> villes) {
-		// on cree une liste avec les regions et on la met a jour avec la population des villes parcourues
+		// on cree une liste avec les regions et on la met a jour avec la population des
+		// villes parcourues
 		ArrayList<Region> regions = new ArrayList<>();
 		Iterator<Ville> iterator = villes.iterator();
 		Ville ville;
 		while (iterator.hasNext()) {
-			ville=iterator.next();
-			if (!containsRegion(ville.getNomRegion(),regions)) 
-				regions.add(new Region(ville.getNomRegion(),ville.getPopulationTotale()));
+			ville = iterator.next();
+			if (!containsRegion(ville.getNomRegion(), regions))
+				regions.add(new Region(ville.getNomRegion(), ville.getPopulationTotale()));
 			else
-				regions = updateRegions(ville.getNomRegion(),ville.getPopulationTotale(),regions);
+				regions = updateRegions(ville.getNomRegion(), ville.getPopulationTotale(), regions);
 		}
-		
-		//on trie et on affiche les 10 regions les plus peuplees
+
+		// on trie et on affiche les 10 regions les plus peuplees
 		System.out.println("------Les 10 regions les plus peuplees-----");
 		Collections.sort(regions, Collections.reverseOrder());
 		Iterator<Region> iterator2 = regions.iterator();
-		int compteur=0;
-		while (iterator2.hasNext() && compteur<10) {
+		int compteur = 0;
+		while (iterator2.hasNext() && compteur < 10) {
 			System.out.println(iterator2.next());
 			compteur++;
 		}
 	}
-	
+
 	/**
 	 * containsRegion
+	 * 
 	 * @param region
 	 * @param regions
 	 * @return true si regions contient une region avec region comme nom
 	 */
-	public static boolean containsRegion (String region, ArrayList<Region> regions) {
+	public static boolean containsRegion(String region, ArrayList<Region> regions) {
 		Iterator<Region> iterator = regions.iterator();
 		while (iterator.hasNext()) {
 			if (iterator.next().getNom().equals(region))
@@ -303,21 +363,37 @@ public class Application {
 		}
 		return false;
 	}
+
+	/**
+	 * villesContainsRegion
+	 * @param region
+	 * @param villes
+	 * @return true si villes contient la region donnee
+	 */
+	public static boolean villesContainsRegion(String region, ArrayList<Ville> villes) {
+		Iterator<Ville> iterator = villes.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getNomRegion().equals(region))
+				return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * updateRegions
+	 * 
 	 * @param nom
 	 * @param population
 	 * @param regions
 	 * @return la liste des regions mise a jour avec sa population
 	 */
-	public static ArrayList<Region> updateRegions(String nom,int population,ArrayList<Region> regions){
+	public static ArrayList<Region> updateRegions(String nom, int population, ArrayList<Region> regions) {
 		Iterator<Region> iterator = regions.iterator();
 		Region region;
 		while (iterator.hasNext()) {
-			region=iterator.next();
+			region = iterator.next();
 			if (region.getNom().equals(nom))
-				region.setPopulation(region.getPopulation()+population);
+				region.setPopulation(region.getPopulation() + population);
 		}
 		return regions;
 	}
@@ -329,36 +405,38 @@ public class Application {
 	 * @param villes
 	 */
 	public static void dixDepartmtsPlusPeuples(ArrayList<Ville> villes) {
-		// on cree une liste avec les departements et on la met a jour avec la population des villes parcourues
+		// on cree une liste avec les departements et on la met a jour avec la
+		// population des villes parcourues
 		ArrayList<Departement> departmts = new ArrayList<>();
 		Iterator<Ville> iterator = villes.iterator();
 		Ville ville;
 		while (iterator.hasNext()) {
-			ville=iterator.next();
-			if (!containsDepartmt(ville.getCodeDepartement(),departmts)) 
-				departmts.add(new Departement(ville.getCodeDepartement(),ville.getPopulationTotale()));
+			ville = iterator.next();
+			if (!containsDepartmt(ville.getCodeDepartement(), departmts))
+				departmts.add(new Departement(ville.getCodeDepartement(), ville.getPopulationTotale()));
 			else
-				departmts = updateDepartmts(ville.getCodeDepartement(),ville.getPopulationTotale(),departmts);
+				departmts = updateDepartmts(ville.getCodeDepartement(), ville.getPopulationTotale(), departmts);
 		}
-		
-		//on trie et on affiche les 10 regions les plus peuplees
+
+		// on trie et on affiche les 10 regions les plus peuplees
 		System.out.println("------Les 10 departements les plus peuplees-----");
 		Collections.sort(departmts, Collections.reverseOrder());
 		Iterator<Departement> iterator2 = departmts.iterator();
-		int compteur=0;
-		while (iterator2.hasNext() && compteur<10) {
+		int compteur = 0;
+		while (iterator2.hasNext() && compteur < 10) {
 			System.out.println(iterator2.next());
 			compteur++;
 		}
 	}
-	
+
 	/**
 	 * containsDepartmt
+	 * 
 	 * @param departmt
 	 * @param departmts
 	 * @return true si departmts contient un departmt avec departmt comme nom
 	 */
-	public static boolean containsDepartmt (String departmt, ArrayList<Departement> departmts) {
+	public static boolean containsDepartmt(String departmt, ArrayList<Departement> departmts) {
 		Iterator<Departement> iterator = departmts.iterator();
 		while (iterator.hasNext()) {
 			if (iterator.next().getCode().equals(departmt))
@@ -368,23 +446,40 @@ public class Application {
 	}
 	
 	/**
+	 * villesContainsDepartmt
+	 * @param departmt
+	 * @param villes
+	 * @return true si villes contient le departement
+	 */
+	public static boolean villesContainsDepartmt(String departmt, ArrayList<Ville> villes) {
+		Iterator<Ville> iterator = villes.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().getCodeDepartement().equals(departmt))
+				return true;
+		}
+		return false;
+	}
+
+	/**
 	 * updateDepartmts
+	 * 
 	 * @param nom
 	 * @param population
 	 * @param departmts
 	 * @return la liste des departements mise a jour avec sa population
 	 */
-	public static ArrayList<Departement> updateDepartmts(String code,int population,ArrayList<Departement> departmts){
+	public static ArrayList<Departement> updateDepartmts(String code, int population,
+			ArrayList<Departement> departmts) {
 		Iterator<Departement> iterator = departmts.iterator();
 		Departement departmt;
 		while (iterator.hasNext()) {
-			departmt=iterator.next();
+			departmt = iterator.next();
 			if (departmt.getCode().equals(code))
-				departmt.setPopulation(departmt.getPopulation()+population);
+				departmt.setPopulation(departmt.getPopulation() + population);
 		}
 		return departmts;
 	}
-	
+
 	/**
 	 * dixPlusGrandesVilles : affiche les dix plus grandes villes
 	 * 
