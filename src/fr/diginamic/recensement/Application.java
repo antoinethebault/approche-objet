@@ -22,24 +22,17 @@ public class Application {
 	public static void main(String[] args) {
 		ArrayList<Ville> villes = new ArrayList<>();
 		load(villes);
-		System.out.println(getVille("Montpellier", villes));
-		System.out.println("Population de l'Herault : " + getPopulationDepartement("34", villes));
-		System.out.println("Plus petite ville du departement : " + getPlusPetiteVille("34", villes));
-		dixPlusGrandesVilles("34", villes);
-		dixPlusPetitesVilles("34", villes);
-		System.out.println("Population de l'Occitanie : " + getPopulationRegion("Occitanie", villes));
-		dixPlusGrandesVillesRegion("Occitanie", villes);
-		departementPlusImportantRegion("Occitanie", villes);
-		dixRegionsPlusPeuples(villes);
-		dixDepartmtsPlusPeuples(villes);
-		dixPlusGrandesVilles(villes);
+		//System.out.println(getVille("Montpellier", villes));
+		//System.out.println("Population de l'Herault : " + getPopulationDepartement("34", villes));
+		//System.out.println("Plus petite ville du departement : " + getPlusPetiteVille("34", villes));
+		//dixPlusPetitesVilles("34", villes);
+		//System.out.println("Population de l'Occitanie : " + getPopulationRegion("Occitanie", villes));
+		//departementPlusImportantRegion("Occitanie", villes);
 		try {
 			menu(villes);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -48,20 +41,25 @@ public class Application {
 	 */
 	public static void menu(ArrayList<Ville> villes) throws Exception {
 		Scanner sc = new Scanner(System.in);
-		String nom;
+		String nom, code;
 		int saisie = 0;
-		while (saisie != 4) {
-			System.out.println("1.Obtenir la popuplation d'une ville");
-			System.out.println("2.Obtenir la population d'un departement");
-			System.out.println("3.Obtenir la population d'une region");
-			System.out.println("4.Sortir");
+		while (saisie != 9) {
+			System.out.println("1. Obtenir la popuplation d'une ville");
+			System.out.println("2. Obtenir la population d'un departement");
+			System.out.println("3. Obtenir la population d'une region");
+			System.out.println("4. Afficher les 10 régions les plus peuplées");
+			System.out.println("5. Afficher les 10 départements les plus peuplés");
+			System.out.println("6. Afficher les 10 villes les plus peuplées d’un département");
+			System.out.println("7. Afficher les 10 villes les plus peuplées d’une région");
+			System.out.println("8. Afficher les 10 villes les plus peuplées de France");
+			System.out.println("9. Sortir");
 			try {
 				saisie = sc.nextInt();
 			}catch(Exception e) {
-				throw new Exception("La saisie doit etre un entier: "+e.getMessage());
+				throw new Exception("La saisie doit etre un entier");
 			}
-			if (saisie<1 || saisie>4)
-				throw new Exception("La saisie doit etre entre 1 et 4");
+			if (saisie<1 || saisie>9)
+				throw new Exception("La saisie doit etre entre 1 et 9");
 			
 			switch (saisie) {
 			case 1:
@@ -75,7 +73,7 @@ public class Application {
 				break;
 			case 2:
 				System.out.println("Tapez le code d'un departement dont vous voulez la population :");
-				String code = sc.next();
+				code = sc.next();
 				if (!villesContainsDepartmt(code, villes))
 					System.out.println("Le departement n'est pas trouve");
 				else
@@ -89,9 +87,38 @@ public class Application {
 				else
 					System.out.println("Population de "+nom+" : " + getPopulationRegion(nom, villes));
 				break;
+			case 4:
+				dixRegionsPlusPeuples(villes);
+				break;
+			case 5:
+				dixDepartmtsPlusPeuples(villes);
+				break;
+			case 6:
+				System.out.println("Entrer le code du departement dont vous voulez les 10 villes les plus peuplees");
+				code = sc.next();
+				if (!villesContainsDepartmt(code, villes))
+					System.out.println("Le departement n'est pas trouve");
+				else
+					dixPlusGrandesVilles(code, villes);
+				break;
+			case 7:
+				System.out.println("Ecrivez la region dont vous voulez les 10 plus grandes villes :");
+				nom = sc.next();
+				if (!villesContainsRegion(nom,villes))
+					System.out.println("La region n'est pas trouvee");
+				else
+					dixPlusGrandesVillesRegion(nom,villes);
+				break;
+			case 8:
+				dixPlusGrandesVilles(villes);
+				break;
+			case 9:
+				sc.close();
+				break;
 			}
+			
 		}
-		sc.close();
+		
 	}
 
 	/**
