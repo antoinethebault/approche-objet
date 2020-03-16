@@ -211,6 +211,7 @@ public class Application {
 	 * @param villes : liste de toutes les villes de france
 	 * @return la ville la plus petite du departement
 	 */
+	@SuppressWarnings("unused")
 	private static Ville getPlusPetiteVille(String code, ArrayList<Ville> villes) {
 		Iterator<Ville> iterator = villes.iterator();
 		Ville ville;
@@ -271,6 +272,7 @@ public class Application {
 	 * @param code
 	 * @param villes
 	 */
+	@SuppressWarnings("unused")
 	private static void dixPlusPetitesVilles(String code, ArrayList<Ville> villes) {
 		Collections.sort(villes);
 		Iterator<Ville> iterator = villes.iterator();
@@ -293,6 +295,7 @@ public class Application {
 	 * @param region
 	 * @param villes
 	 */
+	@SuppressWarnings("unused")
 	private static void departementPlusImportantRegion(String region, ArrayList<Ville> villes) {
 		// on parcours villes et on place les departements de la region dans une liste
 		HashSet<String> departements = new HashSet<>();
