@@ -19,6 +19,7 @@ public class Application {
 		//apprentissage
 		/**dataSet: DataSet : prend en parametre le nombre d'entrees et de sorties*/
 		DataSet dataSet = new DataSet(2, 1);
+		
 		/**DataSetRow : prend en parametre des valeurs d'entrees et de sorties*/
 		DataSetRow rOne = new DataSetRow(new double[] {1, 1}, new double[]{1}); 
 		DataSetRow rTwo = new DataSetRow(new double[] {0, 0}, new double[]{0}); 
@@ -28,15 +29,30 @@ public class Application {
 		dataSet.addRow(rTwo);
 		dataSet.addRow(rThree);
 		dataSet.addRow(rFour);
-		neuralNetwork.learn(dataSet) ;
+				
+		for (int i=0;i<20;i++)
+			neuralNetwork.learn(dataSet) ;
 		
 		//calcul
-		neuralNetwork.setInput(1,1); 
+		neuralNetwork.setInput(0,0);
 		neuralNetwork.calculate();
-		for (double output: neuralNetwork.getOutput()){
+		for (double output: neuralNetwork.getOutput())
 			System.out.println(output); 
-		}
+		
+		neuralNetwork.setInput(0,1);
+		neuralNetwork.calculate();
+		for (double output: neuralNetwork.getOutput())
+			System.out.println(output); 
 
+		neuralNetwork.setInput(1,0);
+		neuralNetwork.calculate();
+		for (double output: neuralNetwork.getOutput())
+			System.out.println(output); 
+		
+		neuralNetwork.setInput(1,1);
+		neuralNetwork.calculate();
+		for (double output: neuralNetwork.getOutput())
+			System.out.println(output); 
 	}
 
 }
